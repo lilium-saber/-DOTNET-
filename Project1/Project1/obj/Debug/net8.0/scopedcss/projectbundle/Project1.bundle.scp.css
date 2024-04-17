@@ -1,0 +1,17 @@
+/* _content/Project1/Components/Layout/ThemeColorSelector.razor.rz.scp.css */
+.demo-theme-color-item[b-3ejnhwase7] {
+    display: table-cell;
+    width: 36px;
+    height: 36px;
+    vertical-align: top;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+}
+
+    .demo-theme-color-item .material-icons[b-3ejnhwase7] {
+        display: flex;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+    }

@@ -1,0 +1,95 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = Project1
+build_property.RootNamespace = Project1
+build_property.ProjectDir = E:\programingg\network\bl1\Project1\Project1\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = E:\programingg\network\bl1\Project1\Project1
+build_property._RazorSourceGeneratorDebug = 
+
+[E:/programingg/network/bl1/Project1/Project1/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/programingg/network/bl1/Project1/Project1/Components/Layout/FooterMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcRm9vdGVyTWVudS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/programingg/network/bl1/Project1/Project1/Components/Layout/SideMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcU2lkZU1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/programingg/network/bl1/Project1/Project1/Components/Layout/TopMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcVG9wTWVudS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/programingg/network/bl1/Project1/Project1/Components/TodoApp/TodoItem.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xUb2RvQXBwXFRvZG9JdGVtLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/programingg/network/bl1/Project1/Project1/Components/TodoApp/TodoItems.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xUb2RvQXBwXFRvZG9JdGVtcy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/programingg/network/bl1/Project1/Project1/Layouts/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = TGF5b3V0c1xNYWluTGF5b3V0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/programingg/network/bl1/Project1/Project1/Pages/Dashboard.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGFzaGJvYXJkLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/programingg/network/bl1/Project1/Project1/Pages/Essay.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXNzYXkucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/programingg/network/bl1/Project1/Project1/Pages/SimpleFormPage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2ltcGxlRm9ybVBhZ2UucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/programingg/network/bl1/Project1/Project1/Pages/TodoAppPage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVG9kb0FwcFBhZ2UucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/programingg/network/bl1/Project1/Project1/Pages/WriteEssay.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcV3JpdGVFc3NheS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/programingg/network/bl1/Project1/Project1/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/programingg/network/bl1/Project1/Project1/Components/Layout/ThemeColorSelector.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcVGhlbWVDb2xvclNlbGVjdG9yLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-3ejnhwase7
+
+[E:/programingg/network/bl1/Project1/Project1/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/programingg/network/bl1/Project1/Project1/Pages/_Host.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0hvc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/programingg/network/bl1/Project1/Project1/Pages/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0xheW91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 

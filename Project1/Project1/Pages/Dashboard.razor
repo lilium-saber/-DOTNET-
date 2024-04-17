@@ -1,0 +1,394 @@
+﻿@page "/"
+@inject IVersionProvider VersionProvider
+@using Blazorise
+@using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
+@using Project1
+@inject ProtectedSessionStorage ProtectedSessionStore
+@inject Datause datause
+@inject IHttpClientFactory HttpClientFactory
+@inject IJSRuntime JSRuntime
+@inject DataShare dataShare
+@inject IHttpContextAccessor httpContextAccessor
+@inject NavigationManager NavigationManager
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
+<PageTitle>博客网站</PageTitle>
+
+<Layout onclick="">
+    <LayoutHeader Fixed>
+        <Heading Size="HeadingSize.Is2">博客网站</Heading>
+        <Div>
+            @if (@hasUser)
+            {
+                <Heading Size="HeadingSize.Is5">欢迎您： @userName</Heading>
+                <Button Color="Color.Primary" Clicked="CloseUser">注销</Button>
+            }
+            else
+            {
+                <Button Color="Color.Primary" Clicked="@ShowSignIn">登入</Button>
+                <Button Color="Color.Success" Clicked="@ShowSignUp">注册</Button>
+                <Modal @ref="modalRef" onclick="@setAlertIn">
+                    <ModalContent Centered>
+                         <ModalHeader>
+                             <ModalTitle>登入模块</ModalTitle>
+                             <CloseButton />
+                         </ModalHeader>
+                         <ModalBody>
+                             <Alert @ref="signInAlert" Color="Color.Warning" @bind-Visible="@seeAlertIn">
+                                 <AlertMessage>
+                                     @msgAlertIn
+                                 </AlertMessage>
+                             </Alert>
+                             <Field>
+                                 <FieldLabel>用户名</FieldLabel>
+                                 <TextEdit Placeholder="请输入用户名" @bind-Text="@userName" />
+                             </Field>
+                             <Field>
+                                 <FieldLabel>密码</FieldLabel>
+                                 <TextEdit Placeholder="请输入密码" @bind-Text="@paw" />
+                             </Field>
+                         </ModalBody>
+                         <ModalFooter>
+                             <Button Color="Color.Secondary" Clicked="@HideModal">关闭</Button>
+                             <Button Color="Color.Primary" Clicked="@SignIn">登入</Button>
+                         </ModalFooter>
+                    </ModalContent>
+                </Modal>
+
+                    <Modal @ref="signUp" onclick="@setAlertUp">
+                        <ModalContent Centered>
+                         <ModalHeader>
+                             <ModalTitle>注册模块</ModalTitle>
+                             <CloseButton />
+                         </ModalHeader>
+                         <ModalBody>
+                             <Alert @ref="signInAlert" Color="Color.Warning" @bind-Visible="@seeAlertUp">
+                                 <AlertMessage>
+                                     @msgAlertUp
+                                    </AlertMessage>
+                                </Alert>
+                             <Field>
+                                 <FieldLabel>用户名</FieldLabel>
+                                 <TextEdit Placeholder="请输入用户名" @bind-Text="@createName" />
+                             </Field>
+                             <Field>
+                                 <FieldLabel>密码</FieldLabel>
+                                 <TextEdit Placeholder="请输入密码" @bind-Text="@createPW" />
+                             </Field>
+                             <Field>
+                                 <FieldLabel>确认密码</FieldLabel>
+                                 <TextEdit Placeholder="请再次输入密码" @bind-Text="@createSPW" />
+                             </Field>
+
+                         </ModalBody>
+                         <ModalFooter>
+                             <Button Color="Color.Secondary" Clicked="@HideSignUp">关闭</Button>
+                             <Button Color="Color.Primary" Clicked="@CreateUser">注册</Button>
+                         </ModalFooter>
+                     </ModalContent>
+                 </Modal>
+            }
+        </Div>
+
+    </LayoutHeader>
+
+    <Divider DividerType="DividerType.Dashed" />
+
+    <Layout Sider>
+        <LayoutSider>
+            <LayoutSiderContent>
+                <Card>
+                    <CardBody>
+                        <NavLink href="/">
+                            <Text TextSize="TextSize.Large">返回首页</Text>
+                        </NavLink>
+
+                    </CardBody>
+                </Card> 
+                <Card>
+                    <CardBody>
+                        <CardTitle Size="4">
+                            我也来写
+                        </CardTitle>
+                        @if(hasUser)
+                        {
+                            <NavLink href="/writeessay">
+                                <Button Color="Color.Primary" Margin="Margin.Is2.FromTop">
+                                    来来来<Icon Name="IconName.ArrowRight" />
+                                </Button>
+                            </NavLink>
+
+                        }
+                        else
+                        {
+                            <CardText>
+                                先登入再来吧！！！
+                            </CardText>
+                        }
+                    </CardBody>
+                </Card>
+                <Card>  
+                    <CardBody>
+                        <CardTitle Size="4">
+                            推荐文章
+                        </CardTitle>
+                        <CardText>
+                            <Link To="#">
+                            文章
+                            </Link>
+                        </CardText>
+                        <Button Color="Color.Primary" Margin="Margin.Is2.FromTop">
+                            查看更多<Icon Name="IconName.ArrowRight" />
+                        </Button>
+                    </CardBody>
+                </Card>
+                <Card>
+                    <CardBody>
+                        <CardTitle Size="4">
+                            友情链接
+                        </CardTitle>
+                        <CardText>
+                            <Link To="#">
+                            链接
+                            </Link>
+                        </CardText>
+                    </CardBody>
+                </Card>
+                <Card>
+                    <CardBody>
+                        <CardTitle Size="4">
+                            关于我们
+                        </CardTitle>
+                        <CardText>
+                            <Link To="#">
+                            给我们留言
+                            </Link>
+                        </CardText>
+                    </CardBody>
+                </Card>
+
+            </LayoutSiderContent>
+        </LayoutSider>
+        <Layout>
+            <LayoutContent>
+                <Breadcrumb>
+                    <BreadcrumbItem>
+                        <NavLink href="/">首页</NavLink>
+                    </BreadcrumbItem>
+                </Breadcrumb>
+                <Fields>
+                    <Field>
+                        <TextEdit Placeholder="在这里可以根据文章标题跳转" @bind-Text="@titlems"></TextEdit> 
+                    </Field>
+                    <Field>
+                        <Button Color="Color.Link" Clicked="() => Trans1(titlems)">跳转</Button>
+                    </Field>
+                </Fields>
+                <ListGroup>
+                    <ListGroupItem>
+                        @foreach (var eassy0 in @eassys)
+                        {
+                            <Card>
+                                <CardBody>
+                                    <CardTitle Size="5">
+                                        @eassy0.EssayTitle
+                                    </CardTitle>
+                                    <CardText>
+                                        @eassy0.ShortWord
+                                        <Button Color="Color.Link" Clicked="() => Trans(eassy0.EssayTitle)">查看全文</Button>
+                                    </CardText>
+                                </CardBody>
+                            </Card>
+                        }                        
+                    </ListGroupItem>
+                </ListGroup>
+
+            </LayoutContent>
+        </Layout>
+    </Layout>
+</Layout>
+
+
+@code{
+    private Modal modalRef;
+    private Modal signUp;
+
+    private Alert signInAlert;
+
+    private string userName = "";
+    private string paw = "";
+    private string createName = "";
+    private string createPW = "";
+    private string createSPW = "";
+    private string msgAlertIn = "用户名或密码错误错误！！！";
+    private string msgAlertUp = "";
+    private string titlems = "";
+    private string? seehasname;
+
+    private bool hasUser { get; set; }
+    private bool seeAlertIn = false;
+    private bool seeAlertUp = false;
+    private bool ? seehasuser;
+
+    private HttpClient Http;
+
+    List<Project1.Modal.Essay> eassys = new List<Project1.Modal.Essay>();
+
+    private void setAlertIn()
+    {
+        this.seeAlertIn = false;
+    }
+
+    private void setAlertUp()
+    {
+        this.seeAlertUp = false;
+    }
+
+    private async Task SignIn()
+    {
+        if (userName == "" && paw == "")
+        {
+            await JSRuntime.InvokeVoidAsync("alert", "用户名或密码未输入");
+        }
+        else
+        {
+            bool results = await datause.CheckUser(userName, paw);
+
+            if (results)
+            {                
+                await JSRuntime.InvokeVoidAsync("setCookie", "UserHas", "true", 1);
+                await JSRuntime.InvokeVoidAsync("alert", "你好");
+                hasUser = true;
+                dataShare._hasUserSignIn = true;
+                dataShare._userName = userName;
+                await ProtectedSessionStore.SetAsync("UserHas", true);
+                await ProtectedSessionStore.SetAsync("name", userName);
+
+
+                /*
+                var cookieop = new CookieOptions()
+                    {
+                    Expires = DateTime.Now.AddHours(1),
+                    IsEssential = true
+                };
+                httpContextAccessor.HttpContext.Response.Cookies.Append("UserHas", "true", cookieop);
+                */
+
+
+                await HideModal();
+            }
+            else
+            {
+                await JSRuntime.InvokeVoidAsync("alert", "用户名或密码错误");
+            }
+        }
+    }
+
+    private async Task getUserHas()
+    {
+        var has = await ProtectedSessionStore.GetAsync<bool>("UserHas");
+        var n = await ProtectedSessionStore.GetAsync<string>("name");
+        hasUser = has.Success ? has.Value : false;
+        userName = n.Success ? n.Value : "";
+    }
+
+    public async Task Trans(string name)
+    {
+        NavigationManager.NavigateTo("/essay/" + name);
+    }
+
+    public async Task Trans1(string name)
+    {
+        if(titlems == "")
+        {
+            await JSRuntime.InvokeVoidAsync("alert", "请输入文章标题");
+        }
+        else
+        {
+            if (await datause.Checkess(titlems) == false)
+            {
+                await JSRuntime.InvokeVoidAsync("alert", "文章不存在");
+            }
+            else
+            {            
+                NavigationManager.NavigateTo("/essay/" + titlems);
+            }
+
+        }
+    }
+
+    private async Task CloseUser()
+    {
+        hasUser = false;
+        userName = "";
+        paw = "";
+        dataShare._hasUserSignIn = false;
+        await ProtectedSessionStore.SetAsync("UserHas", false);
+        await ProtectedSessionStore.SetAsync("name", "");
+        await JSRuntime.InvokeVoidAsync("deleteCookie", "UserHas");
+    }
+
+    private async Task CreateUser()
+    {
+        if (createPW != createSPW)
+        {
+            await JSRuntime.InvokeVoidAsync("alert", "两次密码不一致");
+            createSPW = "";
+        }
+        else if(createName == "" && createPW == "")
+        {
+            await JSRuntime.InvokeVoidAsync("alert", "用户名或密码未输入");
+        }
+        else
+        {
+            //var result = await Http.GetAsync("api/Datause/CreateUser?name=" + createName + "&pw=" + createPW);
+            await datause.CreateUser(createName, createPW);
+            await JSRuntime.InvokeVoidAsync("alert", "注册成功");
+            await HideSignUp();
+        }
+    }
+
+    private Task ShowSignUp()
+    {
+        return signUp.Show();
+    }
+
+    private Task HideSignUp()
+    {
+        return signUp.Hide();
+    }
+
+    private Task ShowSignIn()
+    {
+        this.seeAlertIn = false;
+        return modalRef.Show();
+    }
+
+    private Task HideModal()
+    {
+        return modalRef.Hide();
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Http = HttpClientFactory.CreateClient("MyClient");
+        string username = await JSRuntime.InvokeAsync<string>("getCookie", "username");
+        bool hassignin = dataShare._hasUserSignIn;
+        /*
+        
+         */
+
+        if(hassignin)
+        {
+            hasUser = true;
+            userName = dataShare._userName;
+        }
+        else
+        {
+            hasUser = false;
+            userName = "";
+        }
+        
+        eassys = await datause.GetTop5Essay();
+    }
+}
